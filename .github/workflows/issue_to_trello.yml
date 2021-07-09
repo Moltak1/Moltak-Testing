@@ -26,7 +26,7 @@ jobs:
       - name: create trello card
         run: |
           safe_name=$(echo "[$NUMBER]"$TITLE|tr ' ' '+')
-          card="name="$safe_name"&due=null&desc=""&idList=$LIST&token=$TOKEN&key=$KEY"
+          card="name="$safe_name"&due=null&idList=$LIST&token=$TOKEN&key=$KEY"
           attach="url="$URL"&token=$TOKEN&key=$KEY"
           card_id=$(curl -s --data $card https://api.trello.com/1/cards | jq -r '.id')
           curl -s -o /dev/null --data $attach https://api.trello.com/1/cards/$card_id/attachments
