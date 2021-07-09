@@ -16,9 +16,11 @@ jobs:
     env:
       TOKEN: ${{ secrets.TRELLO_TOKEN }}
       KEY: ${{ secrets.TRELLO_KEY }}
+      TITLE: issue.title
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Runs a set of commands using the runners shell
       - name: create trello card
         run: |
-          echo $TOKEN
+          echo $TOKEN,
+          echo $TITLE
