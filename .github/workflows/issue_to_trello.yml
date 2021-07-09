@@ -16,12 +16,15 @@ jobs:
     env:
       TOKEN: ${{ secrets.TRELLO_TOKEN }}
       KEY: ${{ secrets.TRELLO_KEY }}
-      CONTEX: ${{ toJson(github) }}
+      TITLE: ${{ github.event.issue.title }}
+      NUMBER: ${{ github.event.issue.number }}
+      URL: ${{ github.event.issue.html_url }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Runs a set of commands using the runners shell
       - name: create trello card
         run: |
           echo $TOKEN,
-          echo $GITHUB_EVENT_PATH,
-          echo $CONTEXT
+          echo $TITLE,
+          echo $NUMBER,
+          echo $URL,
