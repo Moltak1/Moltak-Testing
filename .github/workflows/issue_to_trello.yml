@@ -19,4 +19,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: create trello card
         run: |
-          echo issue.title
+          echo $issue.title
