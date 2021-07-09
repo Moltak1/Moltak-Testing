@@ -27,7 +27,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: create trello card
         run: |
-          safe_name=$(echo "[$NUMBER] "$TITLE|tr ' ' '+')
+          safe_name=$(echo "[BUG] ""#$NUMBER "$TITLE|tr ' ' '+')
           safe_desc=$(echo $DESC|tr ' ' '+')
           card="name="$safe_name"&desc=$safe_desc&due=null&idLabels=$LABEL&idList=$LIST&token=$TOKEN&key=$KEY"
           attach="url="$URL"&token=$TOKEN&key=$KEY"
