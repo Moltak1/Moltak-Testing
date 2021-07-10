@@ -35,7 +35,7 @@ jobs:
           attach="url="$URL"&token=$TOKEN&key=$KEY"
           card_response=$(curl -s --data $card https://api.trello.com/1/cards)
           echo $card_response
-          card_id=$(jq -r '.id' $card_response)
+          card_id=$(echo $card_response | jq -r '.id' $card_response)
           curl -s -o /dev/null --data $attach https://api.trello.com/1/cards/$card_id/attachments
 
           
