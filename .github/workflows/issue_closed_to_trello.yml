@@ -1,4 +1,4 @@
-name: IssueToTrello
+name: CloseIssueToTrello
 
 # Controls when the workflow will run
 on: 
@@ -20,7 +20,7 @@ jobs:
     steps:
       # Runs a set of commands using the runners shell
       - name: download card id
-        uses: actions/upload-artifact@v2
+        uses: actions/download-artifact@v2
         with:
           name: issue-${{ github.event.issue.number }}
       - name: review trello card
