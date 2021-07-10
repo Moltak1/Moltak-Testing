@@ -20,7 +20,7 @@ jobs:
       TITLE: ${{ github.event.issue.title }}
       NUMBER: ${{ github.event.issue.number }}
       URL: ${{ github.event.issue.html_url }}
-      LIST: 607e0b1b0fb8813ef34d468e
+      LIST: 60e6d5a1bf51de23c0490f1a
       DESC: ${{ github.event.issue.body}}
       LABEL: 6078af083315ab67b7d21f2c
       COM_URL: ${{ github.event.issue.comments_url }}
@@ -37,8 +37,15 @@ jobs:
           card_response=$(curl -s --data $card https://api.trello.com/1/cards)
           card_url=$(echo $card_response | jq -r '.url')
           card_id=$(echo $card_response | jq -r '.id')
+          echo $card_id > id.txt
           curl -s -o /dev/null --data $attach https://api.trello.com/1/cards/$card_id/attachments
           comment=$(echo '{"body":"![](https://github.trello.services/images/mini-trello-icon.png) [**'$name'**]('$card_url')"}')
           curl -s -H "Authorization: token $GTOKEN" -H "Content-Type: application/json" -X POST -d "$comment" $COM_URL
+      - name: store card id
+        uses: actions/upload-artifact@v2
+        with:
+          name: issue-$NUMBER
+          path: id.txt
+          
 
           
