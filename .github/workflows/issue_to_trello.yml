@@ -44,7 +44,7 @@ jobs:
       - name: store card id
         uses: actions/upload-artifact@v2
         with:
-          name: issue-${{ NUMBER }}
+          name: issue-${{ github.event.issue.number }}
           path: id.txt
           
 
