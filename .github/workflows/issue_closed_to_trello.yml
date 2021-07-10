@@ -15,7 +15,6 @@ jobs:
       GTOKEN: ${{ secrets.G_TOKEN }}
       TOKEN: ${{ secrets.TRELLO_TOKEN }}
       KEY: ${{ secrets.TRELLO_KEY }}
-      NUMBER: ${{ github.event.issue.number }}
       LIST: 60e97d69924ed0242a84897b
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -23,7 +22,7 @@ jobs:
       - name: download card id
         uses: actions/upload-artifact@v2
         with:
-          name: issue-$NUMBER
+          name: issue-${{ github.event.issue.number }}
       - name: review trello card
         run: |
           data="dueComplete=true&idList=$LIST&token=$TOKEN&key=$KEY"
