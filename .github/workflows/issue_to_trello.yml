@@ -14,12 +14,14 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     env:
+      GTOKEN: ${{ secrets.G_TOKEN }}
       TOKEN: ${{ secrets.TRELLO_TOKEN }}
       KEY: ${{ secrets.TRELLO_KEY }}
       TITLE: ${{ github.event.issue.title }}
       NUMBER: ${{ github.event.issue.number }}
       URL: ${{ github.event.issue.html_url }}
-      LIST: 607e0b1b0fb8813ef34d468e
+      #LIST: 607e0b1b0fb8813ef34d468e
+      LIST: 60e6d5a1bf51de23c0490f1a
       DESC: ${{ github.event.issue.body}}
       LABEL: 6078af083315ab67b7d21f2c
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -31,7 +33,9 @@ jobs:
           safe_desc=$(echo $DESC|tr ' ' '+')
           card="name="$safe_name"&desc=$safe_desc&due=null&idLabels=$LABEL&idList=$LIST&token=$TOKEN&key=$KEY"
           attach="url="$URL"&token=$TOKEN&key=$KEY"
-          card_id=$(curl -s --data $card https://api.trello.com/1/cards | jq -r '.id')
+          card_response=$(curl -s --data $card https://api.trello.com/1/cards)
+          echo $card_response
+          card_id=$(jq -r '.id' $card_response)
           curl -s -o /dev/null --data $attach https://api.trello.com/1/cards/$card_id/attachments
 
           
