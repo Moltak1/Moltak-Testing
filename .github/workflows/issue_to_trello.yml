@@ -39,7 +39,7 @@ jobs:
           card_response=$(curl -s --data $card https://api.trello.com/1/cards)
           card_url=$(echo $card_response | jq -r '.url')
           card_id=$(echo $card_response | jq -r '.id')
-          echo $card_id > .github/card_issue_$NUMBER.txt
+          echo $card_id > .github/card_ids/issue-"$NUMBER".txt
           curl -s -o /dev/null --data $attach https://api.trello.com/1/cards/$card_id/attachments
           comment=$(echo '{"body":"![](https://github.trello.services/images/mini-trello-icon.png) [**'$name'**]('$card_url')"}')
           curl -s -H "Authorization: token $GTOKEN" -H "Content-Type: application/json" -X POST -d "$comment" $COM_URL
