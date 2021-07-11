@@ -15,7 +15,7 @@ jobs:
       GTOKEN: ${{ secrets.G_TOKEN }}
       TOKEN: ${{ secrets.TRELLO_TOKEN }}
       KEY: ${{ secrets.TRELLO_KEY }}
-      LIST: 60e97d69924ed0242a84897b
+      LIST: 5ed59a8058386e77cbe05b91
       NUMBER: ${{ github.event.issue.number }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
