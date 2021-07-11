@@ -25,4 +25,4 @@ jobs:
         run: |
           data="dueComplete=true&idList=$LIST&token=$TOKEN&key=$KEY"
           card_id='cat .github/card_ids/issue-"$NUMBER".txt'
-          curl --request PUT -s -o /dev/null -d $data https://api.trello.com/1/cards/$card_id
+          curl --request PUT -v -s -o /dev/null -d $data https://api.trello.com/1/cards/$card_id
