@@ -43,7 +43,7 @@ jobs:
           curl -s -o /dev/null --data $attach https://api.trello.com/1/cards/$card_id/attachments
           comment=$(echo '{"body":"![](https://github.trello.services/images/mini-trello-icon.png) [**'$name'**]('$card_url')"}')
           curl -s -o /dev/null -H "Authorization: token $GTOKEN" -H "Content-Type: application/json" -X POST -d "$comment" $COM_URL
-          git config --global user.name 'github action'
+          git config --global user.name 'github-actions'
           git config --global user.email 'Githubaction@users.noreply.github.com'
           git add -A
           git commit -m "card issue $NUMBER"
