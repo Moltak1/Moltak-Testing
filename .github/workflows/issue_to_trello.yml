@@ -33,6 +33,7 @@ jobs:
         run: |
           name="[BUG] ""#$NUMBER "$TITLE
           safe_name=$(echo $name|tr ' ' '+')
+          echo $DESC
           safe_desc=$(echo $DESC|tr ' ' '+')
           card="name="$safe_name"&desc=$safe_desc&due=null&idLabels=$LABEL&idList=$LIST&token=$TOKEN&key=$KEY"
           attach="url="$URL"&token=$TOKEN&key=$KEY"
